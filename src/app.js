@@ -44,4 +44,4 @@ function getInputvalue(event) {
   }
 }
 
-refs.input.addEventListener("input", debounce(getInputvalue, 500));
+refs.input.addEventListener("input", debounce(getInputvalue, 5000));
