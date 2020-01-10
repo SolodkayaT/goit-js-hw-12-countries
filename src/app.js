@@ -19,11 +19,14 @@ function buildCountryDescription(countries) {
     .join("");
   refs.countryDesciption.insertAdjacentHTML("beforeend", markup);
 }
-
+function clearInfo() {
+  refs.countryDesciption.innerHTML = "";
+  refs.countryList.innerHTML = "";
+  refs.input.innerHTML = "";
+}
 function getInputvalue(event) {
   event.preventDefault();
   const { target } = event;
-
   if (target.value !== "") {
     fetchCountries(target.value).then(data => {
       if (Array.from(data).length > 10) {
@@ -32,11 +35,13 @@ function getInputvalue(event) {
         );
       }
       if (Array.from(data).length === 1) {
-        refs.countryDesciption.innerHTML = "";
+        clearInfo();
         buildCountryDescription(data);
+        target.value = "";
       } else {
-        refs.countryList.innerHTML = "";
+        clearInfo();
         buildCountryList(data);
+        target.value = "";
       }
     });
   } else {
@@ -44,4 +49,4 @@ function getInputvalue(event) {
   }
 }
 
-refs.input.addEventListener("input", debounce(getInputvalue, 5000));
+refs.input.addEventListener("input", debounce(getInputvalue, 500));
