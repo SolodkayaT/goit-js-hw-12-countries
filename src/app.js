@@ -37,11 +37,9 @@ function getInputvalue(event) {
       if (Array.from(data).length === 1) {
         clearInfo();
         buildCountryDescription(data);
-        target.value = "";
       } else {
         clearInfo();
         buildCountryList(data);
-        target.value = "";
       }
     });
   } else {
